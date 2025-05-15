@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ojasva
+      POSTGRES_PASSWORD: 1974
+      POSTGRES_DB: w_e_b
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  springboot:
+    build: .
+    container_name: web_backend
+    environment:
+      SERVER_PORT: 8080
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: ojasva
+      POSTGRES_PASSWORD: 1974
+      POSTGRES_DB: w_e_b
+      JWT_SECRET: fldksajflkdsajlfsdkajlfkdsajfdlkjsflkdsajfslkdajlfkdsajlakfdsjflkdsajflkdsajfdlksajflk
+      JWT_EXPIRATION_MS: 30000000
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_data:
+    driver: local

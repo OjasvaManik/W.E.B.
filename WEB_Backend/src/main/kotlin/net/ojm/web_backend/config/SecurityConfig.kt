@@ -38,7 +38,7 @@ class SecurityConfig(
             .authorizeHttpRequests {
                 it
                     .requestMatchers(
-                        "/api/v1/web/auth/**", // ✅ includes /register
+                        "/api/v1/web/auth/**",
                         "/api/v1/web/wiki",
                         "/api/v1/web/wiki/view/{articleId}",
                         "/api/v1/web/wiki/category/{categoryId}",
